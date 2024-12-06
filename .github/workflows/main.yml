@@ -3,10 +3,10 @@ name: Build Android APK
 on:
   push:
     branches:
-      - master  # Trigger build on push to the master branch
+      - master  
   pull_request:
     branches:
-      - master  # Trigger build on pull requests to master
+      - master  
 
 jobs:
   build:
@@ -14,18 +14,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
+      
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up JDK for Android
+     
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'  # Use Temurin JDK
-          java-version: '18'       # Set Java version (use the one required by your project)
+          distribution: 'temurin'  
+          java-version: '18'       
 
-      # Step 3: Cache Gradle dependencies
+   
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
         with:
@@ -34,7 +34,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle
 
-      # Step 4: Download Android SDK
+      
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
         with:
@@ -42,11 +42,11 @@ jobs:
           build-tools: 33.0.2      # Specify the build tools version
           ndk: 23.1.7779620        # Optional: NDK version if needed
 
-      # Step 5: Build the APK
+      
       - name: Build APK
         run: ./gradlew assembleRelease
 
-      # Step 6: Upload the APK as an artifact
+      
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
