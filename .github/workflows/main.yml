@@ -38,7 +38,7 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
         with:
-          api-level: 32            # Set the API level your project targets
+          api-level: 33            # Set the API level your project targets
           build-tools: 33.0.2      # Specify the build tools version
           ndk: 23.1.7779620        # Optional: NDK version if needed
 
